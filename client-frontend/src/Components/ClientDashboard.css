@@ -1,0 +1,26 @@
+/* 
+  .dashboard-container applies the full-page background image.
+  Make sure justice-statue.jpg is in your src/ folder.
+*/
+.dashboard-container {
+  min-height: 100vh;
+  /* Slightly brighter gradient overlay (0.6) to make the statue clearer */
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+              url('../justice-statue.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps background fixed while scrolling */
+}
+
+/* 
+  .sidebar-card and .case-card create the clean, 
+  semi-transparent white cards that sit on top of the background.
+*/
+.sidebar-card, .case-card {
+  border-radius: 15px;
+  border: none;
+  /* Semi-transparent white background to achieve the "frosted glass" effect */
+  background-color: rgba(255, 255, 255, 0.95); 
+  backdrop-filter: blur(5px); /* Optional: adds a nice blur to what's behind the card */
+}
