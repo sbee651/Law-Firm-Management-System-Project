@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Components/Login';
 import ClientDashboard from './Components/ClientDashboard';
-import StaffDashboard from './Components/StaffDashboard';
+import AttorneyDashboard from './Components/AttorneyDashboard';
+import AdminDashboard from './Components/AdminDashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/client-dashboard" element={<ClientDashboard />} />
-        <Route path="/staff-dashboard" element={<StaffDashboard />} />
+        <Route path="/attorney-dashboard" element={<AttorneyDashboard />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
       </Routes>
     </Router>
   );

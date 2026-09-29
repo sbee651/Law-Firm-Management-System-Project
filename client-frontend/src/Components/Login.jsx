@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { saveAuthToken } from '../auth';
 import './Login.css';
 
 export default function Login() {
@@ -11,38 +12,55 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    
+    // Simulate receiving a JWT token from ASP.NET Core backend
+    const mockToken = `fake-jwt-token-${role}-${Date.now()}`;
+    saveAuthToken(mockToken, role, email);
+
     if (role === 'client') {
       navigate('/client-dashboard');
-    } else {
-      navigate('/staff-dashboard');
+    } else if (role === 'attorney') {
+      navigate('/attorney-dashboard');
+    } else if (role === 'admin') {
+      navigate('/admin-dashboard');
     }
   };
 
   return (
     <Container fluid className="login-container d-flex align-items-center justify-content-center">
       <Row className="w-100 justify-content-center">
-        <Col md={5} lg={4}>
+        <Col md={6} lg={4}>
           <Card className="login-card p-4 shadow-lg">
             <div className="text-center mb-4">
               <h3 className="fw-bold">JusticeLaw Attorneys</h3>
-              <p className="text-muted small">Please sign in to your portal</p>
+              <p className="text-muted small">Sign in to your portal</p>
             </div>
 
             {/* Role Toggle Buttons */}
-            <div className="d-flex mb-4 role-toggle-container p-1 bg-light rounded">
+            <div className="d-flex mb-4 role-toggle-container p-1 bg-light rounded justify-content-around">
               <Button 
                 variant={role === 'client' ? 'primary' : 'light'} 
-                className="w-50 border-0"
+                size="sm"
+                className="border-0 flex-grow-1 mx-1"
                 onClick={() => setRole('client')}
               >
-                Client Portal
+                Client
               </Button>
               <Button 
-                variant={role === 'staff' ? 'primary' : 'light'} 
-                className="w-50 border-0"
-                onClick={() => setRole('staff')}
+                variant={role === 'attorney' ? 'primary' : 'light'} 
+                size="sm"
+                className="border-0 flex-grow-1 mx-1"
+                onClick={() => setRole('attorney')}
               >
-                Staff Portal
+                Attorney
+              </Button>
+              <Button 
+                variant={role === 'admin' ? 'primary' : 'light'} 
+                size="sm"
+                className="border-0 flex-grow-1 mx-1"
+                onClick={() => setRole('admin')}
+              >
+                Admin
               </Button>
             </div>
 
